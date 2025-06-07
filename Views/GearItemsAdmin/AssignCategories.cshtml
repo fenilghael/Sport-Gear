@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Assign Categories";
+    var categories = ViewBag.Categories as List<SportsGearCMS.Models.Category>;
+    var assigned = ViewBag.Assigned as HashSet<int>;
+    int gearItemId = ViewBag.GearItemId;
+    string gearItemName = ViewBag.GearItemName;
+}
+
+<h1>Assign Categories to: @gearItemName</h1>
+
+<form asp-action="AssignCategories" method="post">
+    <input type="hidden" name="id" value="@gearItemId" />
+
+    @foreach (var cat in categories)
+    {
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="selectedCategories" value="@cat.CategoryId"
+                   @(assigned.Contains(cat.CategoryId) ? "checked" : "") />
+            <label class="form-check-label">@cat.Name</label>
+        </div>
+    }
+
+    <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Cancel</a>
+</form>

@@ -1,0 +1,25 @@
+﻿@model SportsGearCMS.Models.GearItem
+
+@{
+    ViewData["Title"] = "Edit Gear Item";
+}
+
+<h1>Edit Gear Item</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="GearItemId" />
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="QuantityInStock"></label>
+        <input asp-for="QuantityInStock" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
